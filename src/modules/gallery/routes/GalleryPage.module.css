@@ -1,0 +1,103 @@
+.hero {
+  background-color: var(--color-surface-alt);
+  padding-block: var(--space-7);
+  text-align: center;
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  color: var(--color-warm-cream);
+  overflow: hidden;
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.tileIcon,
+.tileLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.tileIcon {
+  margin-bottom: var(--space-3);
+}
+
+.tileLabel {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.logoTile {
+  background-color: var(--color-dhaba-brown);
+}
+
+.bg0 {
+  background-color: var(--color-fire-orange);
+}
+
+.bg1 {
+  background-color: var(--color-mahogany-maroon);
+}
+
+.bg2 {
+  background-color: var(--color-dhaba-brown);
+}
+
+.bg3 {
+  background-color: var(--color-saffron-gold);
+  color: var(--color-charcoal-black);
+}
+
+.bg3::after {
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.logoImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.note {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

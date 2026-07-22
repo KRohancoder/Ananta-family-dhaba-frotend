@@ -11,7 +11,8 @@ export const siteInfo = {
   phone: env.contactPhone,
   whatsapp: env.contactWhatsapp,
   email: env.contactEmail,
-  address: 'TODO: Shop address, Area, City, Maharashtra, PIN',
+  // TODO: replace with the real shop address.
+  address: 'Address coming soon — call us for directions',
   mapEmbedUrl: '',
   hours: [
     { day: 'Monday – Friday', time: '12:00 PM – 11:30 PM' },

@@ -48,7 +48,7 @@ export function Header() {
               <PhoneIcon width={18} height={18} />
               {siteInfo.phone}
             </a>
-            <Button as={Link} to="/reservation" size="sm">
+            <Button as={Link} to="/reservation" size="sm" className={styles.reserveButton}>
               Reserve a Table
             </Button>
             <button
@@ -94,11 +94,7 @@ export function Header() {
           ))}
         </nav>
         <div className={styles.mobileFooter}>
-          <a
-            className={styles.callLink}
-            style={{ display: 'inline-flex' }}
-            href={`tel:${siteInfo.phone.replace(/\s+/g, '')}`}
-          >
+          <a className={styles.callLink} href={`tel:${siteInfo.phone.replace(/\s+/g, '')}`}>
             <PhoneIcon width={18} height={18} />
             {siteInfo.phone}
           </a>

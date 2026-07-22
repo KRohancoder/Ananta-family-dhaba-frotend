@@ -94,6 +94,10 @@
   color: var(--color-heading);
 }
 
+.reserveButton {
+  display: none;
+}
+
 .menuToggle {
   display: inline-flex;
   align-items: center;
@@ -147,6 +151,10 @@
   gap: var(--space-4);
 }
 
+.mobileFooter .callLink {
+  display: inline-flex;
+}
+
 @media (min-width: 960px) {
   .nav {
     display: flex;
@@ -155,6 +163,10 @@
   }
 
   .callLink {
+    display: inline-flex;
+  }
+
+  .reserveButton {
     display: inline-flex;
   }
 
