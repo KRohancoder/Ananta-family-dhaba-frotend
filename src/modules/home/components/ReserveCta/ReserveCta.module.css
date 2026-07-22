@@ -1,0 +1,24 @@
+.section {
+  padding-block: var(--space-8);
+  background-color: var(--color-mahogany-maroon);
+  text-align: center;
+}
+
+.title {
+  color: var(--color-warm-cream);
+  margin-bottom: var(--space-3);
+}
+
+.text {
+  color: rgba(245, 235, 224, 0.8);
+  max-width: 520px;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}

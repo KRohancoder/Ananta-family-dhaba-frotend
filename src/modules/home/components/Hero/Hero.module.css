@@ -1,0 +1,74 @@
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-dhaba-brown);
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(42, 26, 23, 0.55) 0%, rgba(42, 26, 23, 0.92) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--space-9);
+  max-width: 720px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-secondary);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  color: var(--color-warm-cream);
+  font-size: var(--fs-3xl);
+  margin-bottom: var(--space-3);
+}
+
+.titleDevanagari {
+  font-family: var(--font-devanagari);
+  color: var(--color-secondary);
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-4);
+}
+
+.tagline {
+  color: rgba(245, 235, 224, 0.85);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-6);
+  max-width: 560px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+@media (min-width: 960px) {
+  .title {
+    font-size: var(--fs-4xl);
+  }
+}

@@ -1,0 +1,85 @@
+.hero {
+  background-color: var(--color-surface-alt);
+  padding-block: var(--space-7);
+  text-align: center;
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.imageWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow-lg);
+}
+
+.storyText p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+  max-width: 620px;
+}
+
+.valuesSection {
+  background-color: var(--color-surface-alt);
+  padding-block: var(--space-8);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.noticesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.noticeItem {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+  color: var(--color-heading);
+}
+
+.valueTitle {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.valueText {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 800px) {
+  .storyGrid {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+@media (min-width: 700px) {
+  .valuesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
