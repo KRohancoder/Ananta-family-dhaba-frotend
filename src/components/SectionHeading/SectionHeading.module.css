@@ -1,0 +1,44 @@
+.wrapper {
+  margin-bottom: var(--space-7);
+}
+
+.center {
+  text-align: center;
+}
+
+.center .devanagari {
+  justify-content: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  margin-bottom: var(--space-2);
+}
+
+.devanagari {
+  display: flex;
+  font-family: var(--font-devanagari);
+  font-size: var(--fs-md);
+  color: var(--color-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.description {
+  max-width: 620px;
+  color: var(--color-text-muted);
+  font-size: var(--fs-md);
+}
+
+.center .description {
+  margin-inline: auto;
+}
