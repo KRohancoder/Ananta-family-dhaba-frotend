@@ -1,0 +1,1 @@
+export { FeaturedMenu } from './FeaturedMenu';

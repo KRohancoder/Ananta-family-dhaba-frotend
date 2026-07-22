@@ -1,0 +1,26 @@
+.section {
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.heading {
+  margin-bottom: var(--space-1);
+}
+
+.headingDevanagari {
+  font-family: var(--font-devanagari);
+  color: var(--color-secondary);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-4);
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  padding-block: var(--space-4);
+}

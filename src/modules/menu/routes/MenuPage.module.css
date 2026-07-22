@@ -1,0 +1,21 @@
+.hero {
+  background-color: var(--color-surface-alt);
+  padding-block: var(--space-7) var(--space-5);
+  text-align: center;
+}
+
+.filterRow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+.list {
+  padding-bottom: var(--space-8);
+}
+
+.errorState {
+  text-align: center;
+  padding-block: var(--space-8);
+  color: var(--color-text-muted);
+}
