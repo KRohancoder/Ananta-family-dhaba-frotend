@@ -1,21 +1,21 @@
 # Anant Family Dhaba — Website Frontend
 
-A production-ready marketing website for **Anant Family Dhaba** (अनंत फॅमिली ढाबा) — Home, full Menu (transcribed from the physical menu cards), About, Gallery, Contact, and Reservation, built as a modular React + TypeScript single-page app.
+A production-ready marketing website for **Anant Family Dhaba** (अनंत फॅमिली ढाबा) — Home, full Menu (transcribed from the physical menu cards), About, Gallery, Contact, and Reservation — plus an owner-facing **admin dashboard** for KPIs and menu management, built as a modular React + TypeScript single-page app.
 
 ## Tech Stack
 
-| Concern         | Choice                                                                 |
-| --------------- | ---------------------------------------------------------------------- |
-| Framework       | React 19 + TypeScript, Vite                                            |
-| Routing         | React Router v7 (route-based code splitting)                           |
-| Data fetching   | TanStack Query                                                         |
-| HTTP client     | Axios (with interceptors, env-configurable base URL)                   |
-| State           | Zustand (UI-only state, e.g. mobile nav)                               |
-| Forms           | React Hook Form + Zod                                                  |
-| Styling         | CSS Modules + CSS variables (no global component CSS)                  |
-| Testing         | Vitest + React Testing Library                                         |
-| Tooling         | ESLint (flat config, strict TypeScript), Prettier, Husky + lint-staged |
-| Package manager | pnpm                                                                   |
+| Concern         | Choice                                                                           |
+| --------------- | -------------------------------------------------------------------------------- |
+| Framework       | React 19 + TypeScript, Vite                                                      |
+| Routing         | React Router v7 (route-based code splitting)                                     |
+| Data fetching   | TanStack Query                                                                   |
+| HTTP client     | Axios (with interceptors, env-configurable base URL)                             |
+| State           | Zustand (UI state, plus owner-editable menu/offers/orders — see Admin Dashboard) |
+| Forms           | React Hook Form + Zod                                                            |
+| Styling         | CSS Modules + CSS variables (no global component CSS)                            |
+| Testing         | Vitest + React Testing Library                                                   |
+| Tooling         | ESLint (flat config, strict TypeScript), Prettier, Husky + lint-staged           |
+| Package manager | pnpm                                                                             |
 
 ### Why not Module Federation?
 
@@ -23,7 +23,21 @@ The original brief asked for a micro-frontend architecture. True Module Federati
 
 ### Scope
 
-This build covers the **marketing site**: Home, Menu, About, Gallery, Contact, Reservation. Auth, Cart, and Checkout were intentionally left out — the physical menu shown has no online ordering, so there's nothing for a cart/checkout flow to operate on yet. If online ordering becomes a real requirement, `modules/cart` and `modules/checkout` can be added following the same module pattern.
+This build covers the **marketing site** (Home, Menu, About, Gallery, Contact, Reservation) plus an **owner admin dashboard** (`/admin`) for KPIs and menu/offer management. Customer-facing online ordering (cart/checkout) is still intentionally out of scope — the physical menu shown has no online ordering yet. If it becomes a real requirement, `modules/cart` and `modules/checkout` can be added following the same module pattern, and would become the real source of the order data the dashboard currently seeds as demo data (see below).
+
+## Admin Dashboard (`/admin`)
+
+A **frontend-only** owner dashboard, linked from the "Owner Login" link in the footer:
+
+- **Dashboard** — total/this-month orders, this-month/lifetime revenue, a monthly revenue chart, and a top-selling-dishes list.
+- **Menu** — add categories, add items, edit prices (flat or half/full), and toggle any item's visibility on the public menu (soft-hide, never a hard delete, so nothing referencing that item ever breaks).
+- **Offers** — add/edit/pause/delete storewide, category-, or item-scoped percent/flat discounts.
+- **Orders** — a read-only order list with a status dropdown per order.
+
+**Current state — two things are intentionally not real yet, both marked with `TODO` comments in code:**
+
+1. **No authentication.** `/admin` is open to anyone with the link (`src/routes/index.tsx` has a `TODO` marking exactly where a `RequireAuth` guard should wrap it once real auth — e.g. Supabase Auth — is wired up).
+2. **No backend.** Everything lives in Zustand stores persisted to the browser's `localStorage` (`src/store/menuStore.ts`, `offersStore.ts`, `ordersStore.ts`), not a database — edits don't sync across devices/browsers, and clearing site data resets them. The order history driving the dashboard KPIs is **seeded demo data** (`src/modules/admin/data/demoOrders.ts`), clearly labeled with a "Demo Data" badge in the admin topbar, since there's no real ordering flow yet to generate real orders. `menuService.getMenu()` already reads from `menuStore` (not the static file) so admin edits immediately reflect on the public site — swapping in a real backend later is a matter of pointing these stores/services at it instead of `localStorage`, without changing any component code.
 
 ## Getting Started
 
@@ -52,7 +66,7 @@ A pre-commit hook (Husky + lint-staged) runs ESLint and Prettier on staged files
 src/
   app/            App.tsx — top-level composition
   components/      Shared, reusable UI (Button, Card, Container, Badge, SectionHeading, LoadingSpinner, PageMeta)
-  layouts/         Header, Footer, MainLayout
+  layouts/         Header, Footer, MainLayout, AdminLayout
   modules/
     home/          Hero, USP strip, featured menu, about teaser, reserve CTA
     menu/          Full menu: category nav, diet filter, item rows, transcribed data
@@ -60,19 +74,20 @@ src/
     contact/       Contact form (RHF + Zod) + info
     reservation/   Reservation form (RHF + Zod) + WhatsApp confirmation fallback
     gallery/       Branded placeholder gallery (see note below)
+    admin/         Owner dashboard: KPI stats, menu/offer/order management (see "Admin Dashboard" above)
     notFound/      404 page
   shared/
     api/           Axios instance + interceptors
     hooks/         useMediaQuery, useScrolled, useScrollToTop, useLockBodyScroll
     services/      Cross-module services (e.g. newsletter)
-    utils/         formatPrice, etc.
+    utils/         formatPrice, slugify, etc.
     constants/     Site info, nav links (siteInfo — see "Placeholders" below)
     types/         Shared types
     assets/        Logo, icons
   styles/          reset.css, variables.css (design tokens), typography.css
   routes/          Route definitions + lazy imports
   providers/       QueryProvider, AppProviders
-  store/           Zustand stores (uiStore)
+  store/           Zustand stores (uiStore, menuStore, offersStore, ordersStore)
   config/          env.ts (typed import.meta.env wrapper)
   lib/             Small framework-agnostic helpers (cn)
 ```
@@ -134,7 +149,7 @@ To deploy:
 
 ## Testing
 
-`pnpm test` runs the Vitest + React Testing Library suite — component smoke tests, form validation/submission flows, and route-level rendering checks, colocated with the code they cover.
+`pnpm test` runs the Vitest + React Testing Library suite — component smoke tests, form validation/submission flows, route-level rendering checks, and plain unit tests for the Zustand stores and stats-computation utils — colocated with the code they cover.
 
 ## Coding Standards
 
