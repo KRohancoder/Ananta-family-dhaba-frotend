@@ -1,0 +1,72 @@
+.shell {
+  min-height: 100vh;
+  background-color: var(--color-surface-alt);
+}
+
+.topbar {
+  background-color: var(--color-surface-inverse);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+.topbarInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brandTitle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-white);
+  font-size: var(--fs-md);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.navLink:hover {
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navLinkActive {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.viewSite {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+}
+
+.main {
+  padding-block: var(--space-6) var(--space-9);
+}

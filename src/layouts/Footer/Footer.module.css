@@ -159,6 +159,12 @@
   gap: var(--space-1);
 }
 
+.ownerLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 235, 224, 0.3);
+}
+
 @media (min-width: 700px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

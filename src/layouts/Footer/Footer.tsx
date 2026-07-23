@@ -162,7 +162,10 @@ export function Footer() {
             ))}
           </div>
           <span>
-            &copy; {new Date().getFullYear()} {siteInfo.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {siteInfo.name}. All rights reserved. ·{' '}
+            <Link to="/admin" className={styles.ownerLink}>
+              Owner Login
+            </Link>
           </span>
         </div>
       </Container>
