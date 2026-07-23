@@ -12,6 +12,8 @@ export interface MenuItem {
   /** Set instead of half/full when the dish has a single flat price. */
   price?: number;
   note?: string;
+  /** Defaults to true when omitted. Set to false to hide the item from the public menu. */
+  isActive?: boolean;
 }
 
 export interface MenuCategory {
