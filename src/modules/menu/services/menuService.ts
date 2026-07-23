@@ -1,14 +1,22 @@
-import { apiClient, isApiConfigured } from '@/shared/api/apiClient';
-import { menuCategories } from '../data/menuData';
+import { useMenuStore } from '@/store/menuStore';
 import type { MenuCategory } from '../types/menu.types';
 
 /**
- * Returns the full menu. Uses the local transcribed data by default;
- * once VITE_API_BASE_URL is set, swap this to call a real endpoint.
+ * Returns the full public menu — active items only, sourced from the
+ * owner-editable menuStore (seeded from the transcribed menu data).
+ *
+ * TODO: once a real backend (e.g. Supabase) is configured, fetch from it
+ * here instead of reading the local menuStore.
  */
-export async function getMenu(): Promise<MenuCategory[]> {
-  if (!isApiConfigured) return menuCategories;
+export function getMenu(): Promise<MenuCategory[]> {
+  const { categories } = useMenuStore.getState();
 
-  const { data } = await apiClient.get<MenuCategory[]>('/menu');
-  return data;
+  const activeCategories = categories
+    .map((category) => ({
+      ...category,
+      items: category.items.filter((item) => item.isActive !== false),
+    }))
+    .filter((category) => category.items.length > 0);
+
+  return Promise.resolve(activeCategories);
 }

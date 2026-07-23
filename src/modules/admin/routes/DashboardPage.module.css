@@ -1,0 +1,42 @@
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.panelTitle {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  font-size: var(--fs-lg);
+}
+
+@media (min-width: 600px) {
+  .statGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .statGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .panels {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+}
